@@ -1,8 +1,7 @@
-# Use an official Node.js runtime as the base image
+
 FROM python:3.10
 
-# Set the working directory inside the container
-WORKDIR /app
+WORKDIR /portfolio
 
 # Copy package files and install dependencies
 COPY index.html .
