@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: tictaktoe
+spec:
+replicas: 1
+selector:
+matchLabels:
+app: tictaktoe
+  template:
+  metadata:
+   labels:
+      app: tictaktoe
+    spec:
+      containers:
+        - name: tictaktoe
+          image: tictaktoe:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tictaktoe-service
+spec:
+  type: NodePort
+  selector:
+    app: tictaktoe
+  ports:
+    - name: http
+      port: 80
+      targetPort: 3000
+      nodePort: 30080
